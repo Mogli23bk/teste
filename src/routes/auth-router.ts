@@ -1,6 +1,6 @@
 import { Express, request, response, Router } from "express";
 import prismaClient from "../prisma/prisma-client";
-import { create, userData } from "../respository/auth-repository";
+import { create } from "../respository/auth-repository";
 
 
 const authRouter=(server: Express)=>{

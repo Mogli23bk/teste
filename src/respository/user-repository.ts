@@ -1,18 +1,16 @@
 import prisma from "../prisma/prisma-client"
-import userData from "../types/user-data";
 
+
+    export  async function  create(data: any){
+        return await prisma.user.create({
+            data,
+        })
+    }
 
     export async function getAll(){
         return prisma.user.findMany()
     }
 
-    export  function getPaginated(take: number, skip: number){
-        
-        return  prisma.user.findMany({
-            take,
-            skip,
-        })
-    }
 
     export async function getById(id:string) {
         return await prisma.user.findUnique({
@@ -30,3 +28,12 @@ import userData from "../types/user-data";
             }
         })
     }
+
+    export async function getByCpf(cpf: string){
+        return await prisma.user.findUnique({
+            where:{
+                cpf,
+            }
+        })
+    }
+   
