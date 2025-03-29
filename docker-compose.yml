@@ -1,0 +1,10 @@
+services:
+  postgresql:
+    image: postgres
+    container_name: bd
+    environment:
+      POSTGRES_USER: "desafio"
+      POSTGRES_PASSWORD: "desafio"
+      POSTGRES_DB: "desafio"  
+    ports:
+      - "5432:5432"  
