@@ -12,7 +12,7 @@ model Users{
   id String @id @default(uuid())
   name String
   email String @unique
-  cpf String @unique
+  cpf String @unique @bd.VarChar(11)
   password String
   avatar String?
   xp Int @default(0)

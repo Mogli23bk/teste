@@ -1,18 +1,24 @@
+import { Prisma } from "@prisma/client"
 import prisma from "../prisma/prisma-client"
+import userData from "../types/user-data"
 
 
-    export  async function  create(data: any){
+    export  async function  createUser(data: Omit<userData, "id" | "createAt" | "updateAt">  ){
         return await prisma.user.create({
             data,
         })
     }
-
-    export async function getAll(){
-        return prisma.user.findMany()
+    
+    export async function findByEmail(email: string){
+        return await prisma.user.findUnique({
+            where:{
+                email,
+            }
+        })
     }
+   
 
-
-    export async function getById(id:string) {
+    export async function findById(id:string) {
         return await prisma.user.findUnique({
             where:{
                 id,
@@ -21,19 +27,22 @@ import prisma from "../prisma/prisma-client"
         
     }
 
-    export async function getByEmail(email: string){
-        return await prisma.user.findUnique({
-            where:{
-                email,
-            }
-        })
-    }
+   
 
-    export async function getByCpf(cpf: string){
+    export async function findByCpf(cpf: string){
         return await prisma.user.findUnique({
             where:{
                 cpf,
             }
         })
     }
-   
+
+    export async function update(id: string, data: any){
+        return prisma.user.update({
+            where:{
+                id, data
+            }
+        })
+    }
+    
+

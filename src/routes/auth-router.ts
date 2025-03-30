@@ -1,24 +1,8 @@
-import { Express, request, response, Router } from "express";
-import prismaClient from "../prisma/prisma-client";
-import { create } from "../respository/auth-repository";
+import { Router } from 'express';
+import { registerController, loginController } from '../controller/auth.controller';
 
+const router = Router()
 
-const authRouter=(server: Express)=>{
-    const router = Router();
+router.post("/rigister", registerController)
 
-    router.post("/register",async(request,response)=>{
-        try{
-            const {name, email, password, cpf} = request.body;
-            const user = await create(userData)
-
-            if(!name || !email || password || cpf){
-                return response.status(400).send("Os campos não foram preenchidos")
-                    
-                })
-            }
-
-        } 
-    })
-}
-
-export default authRouter;
+router.post("/login",loginController)
